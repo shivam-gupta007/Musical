@@ -1,16 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.shivamgupta.musical'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.shivamgupta.musical"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -26,6 +28,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -46,6 +54,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -63,5 +72,9 @@ dependencies {
 
     //For PermissionRequest composable
     implementation 'androidx.compose.runtime:runtime-saved-instance-state:1.0.0-alpha11'
+
+    //Dagger-Hilt dependency injection
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 
 }
